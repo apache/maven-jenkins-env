@@ -44,34 +44,46 @@ class jenkinsEnv implements Serializable {
             case 'linux':
                 switch(version) {
                     case '3.0.x':
+                        return 'Maven 3.0.5'
                     case '3.0.5':
                         return 'Maven 3.0.5'
                     case '3.2.x':
+                        return 'Maven 3.2.5'
                     case '3.2.5':
                         return 'Maven 3.2.5'
                     case '3.3.x':
+                        return 'Maven 3.3.9'
                     case '3.3.9':
                         return 'Maven 3.3.9'
                     case '3.x.x':
+                        return 'Maven 3.5.2'
                     case '3.5.x':
+                        return 'Maven 3.5.2'
                     case '3.5.2':
+                        return 'Maven 3.5.2'
                     default:
                         return 'Maven 3.5.2'
                 }
             case 'windows':
                 switch(version) {
                     case '3.0.x':
+                        return 'Maven 3.0.5 (Windows)'
                     case '3.0.5':
                         return 'Maven 3.0.5 (Windows)'
                     case '3.2.x':
+                        return 'Maven 3.2.5 (Windows)'
                     case '3.2.5':
                         return 'Maven 3.2.5 (Windows)'
                     case '3.3.x':
+                        return 'Maven 3.3.9 (Windows)'
                     case '3.3.9':
                         return 'Maven 3.3.9 (Windows)'
                     case '3.x.x':
+                        return 'Maven 3.5.2'
                     case '3.5.x':
+                        return 'Maven 3.5.2'
                     case '3.5.2':
+                        return 'Maven 3.5.2'
                     default:
                         return 'Maven 3.5.2'
                 }
