@@ -2,7 +2,7 @@
 
 This repository contains a Jenkins shared library that defines the abstraction of the Jenkins build environment from the Jenkins build definition.
 
-The Jenkins build definition is mangaed from the shared libraries defined in https://gitbox.apache.org/repos/asf?p=maven-jenkins-lib.git[maven-jenkins-lib.git]
+The Jenkins build definition is mangaged from the shared libraries defined in https://gitbox.apache.org/repos/asf?p=maven-jenkins-lib.git[maven-jenkins-lib.git]
 
 If you want to build the Apache Maven repositories on your own Jenkins infrastructure you will need to define tow shared libraries:
 
