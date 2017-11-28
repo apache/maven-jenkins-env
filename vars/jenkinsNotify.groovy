@@ -32,8 +32,10 @@ def call(Map params = [:]) {
         messageBody = messageBody+"\n\nNo changes.\n";
     } else {
         messageBody = messageBody + "\n\nChanges:\n";
-        for (def change in currentBuild.changeSets) {
-            messageBody = messageBody + "\n* ${change.msg}"
+        for (def changeSet in currentBuild.changeSets) {
+            for (def change in changeSet) {
+                messageBody = messageBody + "\n* ${change.msg}"
+            }
         }
     }
     emailext body: messageBody, recipientProviders: providers, replyTo: 'dev@maven.apache.org', subject: messageSubject, to: 'notifications@maven.apache.org'
