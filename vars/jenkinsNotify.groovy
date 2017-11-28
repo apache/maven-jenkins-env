@@ -28,7 +28,7 @@ def call(Map params = [:]) {
         // should never happen if we are actually being invoked.
         return
     }
-    if (changeSets.empty) {
+    if (currentBuild.changeSets.empty) {
         messageBody = messageBody+"\n\nNo changes.\n";
     } else {
         messageBody = messageBody + "\n\nChanges:\n";
