@@ -1,5 +1,6 @@
 #!/usr/bin/env groovy
 def call(Map params = [:]) {
+    echo "Build result: ${currentBuild.currentResult}"
     // determine the message details
     def providers
     def messageBody
@@ -42,13 +43,17 @@ def call(Map params = [:]) {
     }
 
     // comment on any jira tickets
-    def jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
-    for (def jiraIssue in jiraIssues) {
-        try {
-            jiraComment body: "${messageSubject}\n\n${messageBody}", issueKey: jiraIssue
-        } catch (e) {
-            echo "WARNING: Could not update ${jiraIssue}: ${e.message}"
-        }        
+    try {
+        def jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
+        for (def jiraIssue in jiraIssues) {
+            try {
+                jiraComment body: "${messageSubject}\n\n${messageBody}", issueKey: jiraIssue
+            } catch (e) {
+                echo "WARNING: Could not update ${jiraIssue}: ${e.message}"
+            }        
+        }
+    } catch (e) {
+        echo "WARNING: Could not determine JIRA issues: ${e.message}"
     }
     // set the build description to the jira ticket id's
     if (!jiraIssues.empty) {
