@@ -3,6 +3,7 @@ def call(Map params = [:]) {
     // determine the message details
     def providers
     def messageBody
+    def messageTail = ''
     def messageSubject
     def sendMail
     switch(currentBuild.currentResult) {
@@ -18,18 +19,21 @@ def call(Map params = [:]) {
             messageSubject = "Build unstable in Jenkins: ${currentBuild.fullDisplayName}"
             messageBody = """See ${currentBuild.absoluteUrl}"""
             sendMail = true
+            messageTail = '\nFailing tests:\n${FAILED_TESTS}\n\nBuild log:\n${BUILD_LOG}'
         break
         case "FAILURE":
             providers = [[$class: 'CulpritsRecipientProvider']]
             messageSubject = "Build failed in Jenkins: ${currentBuild.fullDisplayName}"
             messageBody = """See ${currentBuild.absoluteUrl}"""
             sendMail = true
+            messageTail = '\nFailing tests:\n${FAILED_TESTS}\n\nBuild log:\n${BUILD_LOG}'
         break
         case "ABORTED":
             providers = [[$class: 'CulpritsRecipientProvider']]
             messageSubject = "Build aborted in Jenkins: ${currentBuild.fullDisplayName}"
             messageBody = """See ${currentBuild.absoluteUrl}"""
             sendMail = true
+            messageTail = '\nBuild log:\n${BUILD_LOG}'
         break
         default:
         // should never happen if we are actually being invoked.
@@ -61,9 +65,9 @@ def call(Map params = [:]) {
             }
         }
     }
-    messageBody = messageBody + '\n${FAILED_TESTS}\n${BUILD_LOG}'
+    messageBody = messageBody + messageTail
     // send the mail
-    if (sendMail) {
+    //if (sendMail) {
         emailext body: messageBody, recipientProviders: providers, replyTo: 'dev@maven.apache.org', subject: messageSubject, to: 'notifications@maven.apache.org'
-    }
+    //}
 }
