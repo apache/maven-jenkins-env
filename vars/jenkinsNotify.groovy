@@ -34,10 +34,13 @@ def call(Map params = [:]) {
         // should never happen if we are actually being invoked.
         return
     }
-    try {
-        jiraComment body: "${messageSubject}\n\n${messageBody}"
-    } catch (e) {
-        echo "jiraComment failed: ${e.message}"
+    def jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
+    for (def jiraIssue in jiraIssues) {
+        try {
+            jiraComment body: "${messageSubject}\n\n${messageBody}", issueKey: jiraIssue
+        } catch (e) {
+            echo "WARNING: Could not update ${jiraIssue}: ${e.message}"
+        }        
     }
     if (currentBuild.changeSets.empty) {
         messageBody = messageBody+"\n\nNo changes.\n";
