@@ -43,8 +43,9 @@ def call(Map params = [:]) {
     }
 
     // comment on any jira tickets
+    def jiraIssues = null
     try {
-        def jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
+        jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
         for (def jiraIssue in jiraIssues) {
             try {
                 jiraComment body: "${messageSubject}\n\n${messageBody}", issueKey: jiraIssue
@@ -56,7 +57,7 @@ def call(Map params = [:]) {
         echo "WARNING: Could not determine JIRA issues: ${e.message}"
     }
     // set the build description to the jira ticket id's
-    if (!jiraIssues.empty) {
+    if (jiraIssues != null && !jiraIssues.empty) {
         currentBuild.description = "${jiraIssues.join(', ')}"
     }
 
