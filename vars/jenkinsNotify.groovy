@@ -36,6 +36,7 @@ def call(Map params = [:]) {
             messageTail = '\nBuild log:\n${BUILD_LOG}'
         break
         default:
+            echo "Unknown status: ${currentBuild.currentResult}"
         // should never happen if we are actually being invoked.
         return
     }
