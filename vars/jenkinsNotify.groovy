@@ -65,8 +65,9 @@ def call(Map params = [:]) {
                 messageBody = messageBody + "\n* ${change.msg.trim().replaceAll('\n','\n  ')}"
             }
         }
+        messageBody = messageBody + "\n"
     }
-    messageBody = messageBody + '\n\n${FAILED_TESTS}\n' + messageTail
+    messageBody = messageBody + '\n${FAILED_TESTS}\n' + messageTail
     // send the mail
     if (sendMail) {
         emailext body: messageBody, recipientProviders: providers, replyTo: 'dev@maven.apache.org', subject: messageSubject, to: 'notifications@maven.apache.org'
