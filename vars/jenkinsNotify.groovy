@@ -3,31 +3,39 @@ def call(Map params = [:]) {
     def providers
     def messageBody
     def messageSubject
+    def sendMail
     switch(currentBuild.currentResult) {
         case "SUCCESS":
             providers = []
             messageSubject = "Build succeeded in Jenkins: ${currentBuild.fullDisplayName}"
             messageBody = """See ${currentBuild.absoluteUrl}"""
+            // only send successfuly builds if the previous build was unsuccessful or incomplete
+            sendMail = currentBuild.previousBuild == null || !"SUCCESS".equals(currentBuild.previousBuild.result)
         break
         case "UNSTABLE":
             providers = [[$class: 'CulpritsRecipientProvider']]
             messageSubject = "Build unstable in Jenkins: ${currentBuild.fullDisplayName}"
             messageBody = """See ${currentBuild.absoluteUrl}"""
+            sendMail = true
         break
         case "FAILURE":
             providers = [[$class: 'CulpritsRecipientProvider']]
             messageSubject = "Build failed in Jenkins: ${currentBuild.fullDisplayName}"
             messageBody = """See ${currentBuild.absoluteUrl}"""
+            sendMail = true
         break
         case "ABORTED":
             providers = [[$class: 'CulpritsRecipientProvider']]
             messageSubject = "Build aborted in Jenkins: ${currentBuild.fullDisplayName}"
             messageBody = """See ${currentBuild.absoluteUrl}"""
+            sendMail = true
         break
         default:
         // should never happen if we are actually being invoked.
         return
     }
+    jiraComment body: "${messageSubject}\n\n${messageBody}"
+
     if (currentBuild.changeSets.empty) {
         messageBody = messageBody+"\n\nNo changes.\n";
     } else {
@@ -38,5 +46,7 @@ def call(Map params = [:]) {
             }
         }
     }
-    emailext body: messageBody, recipientProviders: providers, replyTo: 'dev@maven.apache.org', subject: messageSubject, to: 'notifications@maven.apache.org'
+    if (sendMail) {
+        emailext body: messageBody, recipientProviders: providers, replyTo: 'dev@maven.apache.org', subject: messageSubject, to: 'notifications@maven.apache.org'
+    }
 }
