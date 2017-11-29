@@ -34,8 +34,11 @@ def call(Map params = [:]) {
         // should never happen if we are actually being invoked.
         return
     }
-    jiraComment body: "${messageSubject}\n\n${messageBody}"
-
+    try {
+        jiraComment body: "${messageSubject}\n\n${messageBody}"
+    } catch (e) {
+        echo "jiraComment failed: ${e.message}"
+    }
     if (currentBuild.changeSets.empty) {
         messageBody = messageBody+"\n\nNo changes.\n";
     } else {
