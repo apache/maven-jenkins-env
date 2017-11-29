@@ -1,5 +1,6 @@
 #!/usr/bin/env groovy
 def call(Map params = [:]) {
+    // determine the message details
     def providers
     def messageBody
     def messageSubject
@@ -34,6 +35,8 @@ def call(Map params = [:]) {
         // should never happen if we are actually being invoked.
         return
     }
+
+    // comment on any jira tickets
     def jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
     for (def jiraIssue in jiraIssues) {
         try {
@@ -42,6 +45,12 @@ def call(Map params = [:]) {
             echo "WARNING: Could not update ${jiraIssue}: ${e.message}"
         }        
     }
+    // set the build description to the jira ticket id's
+    if (!jiraIssues.empty) {
+        currentBuild.description = "${jiraIssues.join(', ')}"
+    }
+
+    // add the changes to the email
     if (currentBuild.changeSets.empty) {
         messageBody = messageBody+"\n\nNo changes.\n";
     } else {
@@ -52,6 +61,7 @@ def call(Map params = [:]) {
             }
         }
     }
+    // send the mail
     if (sendMail) {
         emailext body: messageBody, recipientProviders: providers, replyTo: 'dev@maven.apache.org', subject: messageSubject, to: 'notifications@maven.apache.org'
     }
