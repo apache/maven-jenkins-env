@@ -61,6 +61,7 @@ def call(Map params = [:]) {
             }
         }
     }
+    messageBody = messageBody + '\n${FAILED_TESTS}\n${BUILD_LOG}'
     // send the mail
     if (sendMail) {
         emailext body: messageBody, recipientProviders: providers, replyTo: 'dev@maven.apache.org', subject: messageSubject, to: 'notifications@maven.apache.org'
