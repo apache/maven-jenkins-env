@@ -34,7 +34,7 @@ def call(Map params = [:]) {
         messageBody = messageBody + "\n\nChanges:\n";
         for (def changeSet in currentBuild.changeSets) {
             for (def change in changeSet) {
-                messageBody = messageBody + "\n* ${change.msg}"
+                messageBody = messageBody + "\n* ${change.msg.trim().replaceAll('\n','\n  ')}"
             }
         }
     }
