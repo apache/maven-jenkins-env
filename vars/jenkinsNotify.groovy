@@ -64,21 +64,27 @@ def call(Map params = [:]) {
 
     // comment on any jira tickets
     def jiraIssues = null
+    def jiraMavens = []
     try {
         jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
         for (def jiraIssue in jiraIssues) {
-            try {
-                jiraComment body: "${messageSubject}\n\n${messageBody}", issueKey: jiraIssue
-            } catch (e) {
-                echo "WARNING: Could not update ${jiraIssue}: ${e.message}"
-            }        
+            // only comment on maven's issues, all our trackers start with M
+            // may end up commenting on other TLPs in some cases but should be very rare
+            if (jiraIssue.startsWith("M")) {
+                try {
+                    jiraComment body: "${messageSubject}\n\n${messageBody}", issueKey: jiraIssue
+                } catch (e) {
+                    echo "WARNING: Could not update ${jiraIssue}: ${e.message}"
+                }
+                jiraMavens += jiraIssue
+            }
         }
     } catch (e) {
         echo "WARNING: Could not determine JIRA issues: ${e.message}"
     }
     // set the build description to the jira ticket id's
-    if (jiraIssues != null && !jiraIssues.empty) {
-        currentBuild.description = "${jiraIssues.join(', ')}"
+    if (!jiraMavens.empty) {
+        currentBuild.description = "${jiraMavens.join(', ')}"
     }
 
     // add the changes to the email
