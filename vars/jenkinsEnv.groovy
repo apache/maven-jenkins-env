@@ -51,6 +51,8 @@ class jenkinsEnv implements Serializable {
                         return 'JDK 1.8 (latest)'
                     case '9':
                         return 'JDK 1.9 (latest)'
+                    case '10':
+                        return 'JDK 10 b37 (early access build) (Windows Only)'
                     default:
                         return null
                 }
