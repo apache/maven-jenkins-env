@@ -42,6 +42,8 @@ class jenkinsEnv implements Serializable {
                         return 'JDK 1.9 (latest)'
                     case '10':
                         return 'JDK 10 (latest)'
+                    case '11':
+                        return 'JDK 11 b8 (early access build)'
                     default:
                         return null
                 }
@@ -55,6 +57,8 @@ class jenkinsEnv implements Serializable {
                         return 'JDK 1.9 (latest)'
                     case '10':
                         return 'JDK 10 b46 (Windows Only)'
+                    case '11':
+                        return 'JDK 11 b8 (early access build)'
                     default:
                         return null
                 }
