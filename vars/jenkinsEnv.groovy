@@ -102,9 +102,9 @@ class jenkinsEnv implements Serializable {
     }
     def jdkForMaven(String version) {
         switch(version) {
-            case ~/^3\.0\./:
+            case ~/^3\.0\..+/:
                 return '6'
-            case ~/^3\.[235]\./:
+            case ~/^3\.[235]\..+/:
             case '3.x.x':
                 return '7'
             default:
