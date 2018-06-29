@@ -70,52 +70,53 @@ class jenkinsEnv implements Serializable {
         switch (os) {
             case 'linux':
                 switch(version) {
-                    case '3.0.x':
+                    case ~/^3\.0\.[x5]$/:
                         return 'Maven 3.0.5'
-                    case '3.0.5':
-                        return 'Maven 3.0.5'
-                    case '3.2.x':
+                    case ~/^3\.2\.[x5]$/:
                         return 'Maven 3.2.5'
-                    case '3.2.5':
-                        return 'Maven 3.2.5'
-                    case '3.3.x':
+                    case ~/^3\.3\.[x9]$/:
                         return 'Maven 3.3.9'
-                    case '3.3.9':
-                        return 'Maven 3.3.9'
+                    case ~/^3\.5\.[x2]$/:
                     case '3.x.x':
-                        return 'Maven 3.5.2'
-                    case '3.5.x':
-                        return 'Maven 3.5.2'
-                    case '3.5.2':
                         return 'Maven 3.5.2'
                     default:
                         return 'Maven 3.5.2'
                 }
             case 'windows':
                 switch(version) {
-                    case '3.0.x':
+                    case ~/^3\.0\.[x5]$/:
                         return 'Maven 3.0.5 (Windows)'
-                    case '3.0.5':
-                        return 'Maven 3.0.5 (Windows)'
-                    case '3.2.x':
+                    case ~/^3\.2\.[x5]$/:
                         return 'Maven 3.2.5 (Windows)'
-                    case '3.2.5':
-                        return 'Maven 3.2.5 (Windows)'
-                    case '3.3.x':
+                    case ~/^3\.3\.[x9]$/:
                         return 'Maven 3.3.9 (Windows)'
-                    case '3.3.9':
-                        return 'Maven 3.3.9 (Windows)'
+                    case ~/^3\.5\.[x0]$/:
                     case '3.x.x':
                         return 'Maven 3.5.0 (Windows)'
-                    case '3.5.x':
-                        return 'Maven 3.5.0 (Windows)'
-                    case '3.5.2':
-                        return null
                     default:
                         return 'Maven 3.5.0 (Windows)'
                 }
             default:
                 return null
+        }
+    }
+    def jdkForMaven(String version) {
+        switch(version) {
+            case ~/^3\.0\./:
+                return '6'
+            case ~/^3\.[235]\./:
+            case '3.x.x':
+                return '7'
+            default:
+                return null
+        }
+    }
+    def mavenForJdk(String version) {
+        switch(version) {
+            case '6':
+                return '3.0.x'
+            default:
+                return '3.5.x'
         }
     }
 }
