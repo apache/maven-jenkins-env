@@ -88,7 +88,7 @@ def call(Map params = [:]) {
     }
 
     // add the changes to the email
-    if (currentBuild.changeSets.isEmptySet() ) {
+    if (currentBuild.changeSets.isEmpty() ) {
         messageBody = messageBody+"\n\nNo changes.\n";
     } else {
         messageBody = messageBody + "\n\nChanges:\n";
