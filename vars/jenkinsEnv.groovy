@@ -20,6 +20,11 @@
  */
 
 class jenkinsEnv implements Serializable {
+    def nodeSelection(String osLabel) {
+	  // exclude problematic nodes
+	  return "'${osLabel}' && !ubuntu-eu2"
+	}
+
     def labelForOS(String os) {
         switch (os) {
             case 'linux':
