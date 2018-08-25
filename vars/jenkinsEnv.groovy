@@ -23,7 +23,7 @@ class jenkinsEnv implements Serializable {
     def nodeSelection(String osLabel) {
 	  // exclude problematic nodes
 	  // windows-2012-1 Java 11 is a JRE, not a JDK
-	  return "\"${osLabel}\" && !H31"
+	  return "\"${osLabel}\""
 	}
 
     def labelForOS(String os) {
