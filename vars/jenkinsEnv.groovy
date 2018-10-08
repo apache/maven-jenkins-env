@@ -21,9 +21,8 @@
 
 class jenkinsEnv implements Serializable {
     def nodeSelection(String osLabel) {
-	  // exclude problematic nodes
-	  // 2018-09-21: H25 no space left
-	  return "\"${osLabel}\" && !H25"
+    // Problem with Node H31
+	  return "\"${osLabel}\" && !H31"
 	}
 
     def labelForOS(String os) {
