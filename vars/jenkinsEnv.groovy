@@ -28,7 +28,7 @@ class jenkinsEnv implements Serializable {
         switch (os) {
             case 'linux':
 //                return 'ubuntu'
-                return 'ubuntu && !H24 && !H25 && !H27 && !H28 && !H29 && !H33 && !H37 && !H39 && !H40 && !H42'
+                return 'ubuntu && !H22 && !H23 && !H24 && !H25 && !H27 && !H28 && !H29 && !H31 && !H32 && !H33 && !H35 && !H37 && !H39 && !H40 && !H42 && !H43'
             case 'windows':
 //                return 'windows-2016-3'
                 return 'Windows'
