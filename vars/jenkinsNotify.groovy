@@ -106,7 +106,7 @@ def call(Map params = [:]) {
     if (authors.contains('github')) sendMail = false
     if (sendMail) {
         messageBody = messageBody + '\n${FAILED_TESTS}\n' + messageTail
-        println("Sending email with message body \"${messageBody}\"")
+        println("Sending email ...")
         emailext body: messageBody, recipientProviders: providers, replyTo: 'dev@maven.apache.org', subject: messageSubject, to: 'notifications@maven.apache.org'
     }
 }
