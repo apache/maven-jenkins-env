@@ -88,20 +88,25 @@ def call(Map params = [:]) {
     }
 
     // add the changes to the email
-    if (currentBuild.changeSets.isEmpty() ) {
-        messageBody = messageBody+"\n\nNo changes.\n";
+	def changes = currentBuild?.changeSets
+	def authors = []
+    if (changes.isEmpty() ) {
+        messageBody = messageBody + "\n\nNo changes.\n";
     } else {
         messageBody = messageBody + "\n\nChanges:\n";
-        for (def changeSet in currentBuild.changeSets) {
+        for (def changeSet in changes) {
             for (def change in changeSet) {
                 messageBody = messageBody + "\n* ${change.msg.trim().replaceAll('\n','\n  ')}"
+                authors.add(change.author)
             }
         }
         messageBody = messageBody + "\n"
     }
-    messageBody = messageBody + '\n${FAILED_TESTS}\n' + messageTail
-    // send the mail
+    println("The authors of changes ${authors.unique()}.")
+    sendMail &= !authors.contains('github')
     if (sendMail) {
+        messageBody = messageBody + '\n${FAILED_TESTS}\n' + messageTail
+        println("Sending email with message body \"${messageBody}\"")
         emailext body: messageBody, recipientProviders: providers, replyTo: 'dev@maven.apache.org', subject: messageSubject, to: 'notifications@maven.apache.org'
     }
 }
