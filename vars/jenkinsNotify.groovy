@@ -88,13 +88,12 @@ def call(Map params = [:]) {
     }
 
     // add the changes to the email
-	def changes = currentBuild?.changeSets
 	def authors = []
-    if (changes.isEmpty() ) {
+    if (currentBuild.changeSets.isEmpty() ) {
         messageBody = messageBody + "\n\nNo changes.\n";
     } else {
         messageBody = messageBody + "\n\nChanges:\n";
-        for (def changeSet in changes) {
+        for (def changeSet in currentBuild.changeSets) {
             for (def change in changeSet) {
                 messageBody = messageBody + "\n* ${change.msg.trim().replaceAll('\n','\n  ')}"
                 //authors += change.author
