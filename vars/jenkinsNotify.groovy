@@ -94,7 +94,7 @@ def call(Map params = [:]) {
     } else {
         messageBody = messageBody + "\n\nChanges:\n";
         for (def changeSet in currentBuild.changeSets) {
-            for (def change in changeSet.toUnique{ a, b -> a.commitId <=> b.commitId }) {
+            for (def change in changeSet.unique{ a, b -> a.commitId <=> b.commitId }) {
                 messageBody = messageBody + "\n* ${change.msg.trim().replaceAll('\n','\n  ')}"
                 authors += change.author.id
             }
