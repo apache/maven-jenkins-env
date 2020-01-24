@@ -103,9 +103,11 @@ def call(Map params = [:]) {
     }
     println("The authors of changes ${authors.unique()}.")
     for (def author in authors) {
-        sendMail &= !author.matches('(.*)github(.*)')
+		if (author.matches('(.*)github(.*)')) sendMail = false
     }
-    sendMail &= !authors.isEmpty()
+    
+    if (authors.isEmpty()) sendMail = false
+    
     if (sendMail) {
         messageBody = messageBody + '\n${FAILED_TESTS}\n' + messageTail
         println("Sending email ...")
