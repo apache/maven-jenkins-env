@@ -105,6 +105,7 @@ def call(Map params = [:]) {
     for (def author in authors) {
         sendMail &= !author.matches('(.*)github(.*)')
     }
+    sendMail &= !authors.isEmpty()
     if (sendMail) {
         messageBody = messageBody + '\n${FAILED_TESTS}\n' + messageTail
         println("Sending email ...")
