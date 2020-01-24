@@ -102,9 +102,7 @@ def call(Map params = [:]) {
         messageBody = messageBody + "\n"
     }
     println("The authors of changes ${authors.unique()}.")
-    for (def author in authors) {
-        sendMail &= !author.contains('github')
-    }
+    if (authors.contains('github')) sendMail = false
     if (sendMail) {
         messageBody = messageBody + '\n${FAILED_TESTS}\n' + messageTail
         println("Sending email ...")
