@@ -93,6 +93,8 @@ class jenkinsEnv implements Serializable {
                 switch(version) {
                     case ~/^3\.0\.[x5]$/:
                         return 'Maven 3.0.5'
+                    case ~/^3\.1\.[x1]$/:
+                        return 'Maven 3.1.1'
                     case ~/^3\.2\.[x5]$/:
                         return 'Maven 3.2.5'
                     case ~/^3\.3\.[x9]$/:
@@ -112,6 +114,8 @@ class jenkinsEnv implements Serializable {
                 switch(version) {
                     case ~/^3\.0\.[x5]$/:
                         return 'Maven 3.0.5 (Windows)'
+                    case ~/^3\.1\.[x1]$/:
+                        return 'Maven 3.1.1 (Windows)'
                     case ~/^3\.2\.[x5]$/:
                         return 'Maven 3.2.5 (Windows)'
                     case ~/^3\.3\.[x9]$/:
