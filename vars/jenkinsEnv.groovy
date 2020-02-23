@@ -27,8 +27,8 @@ class jenkinsEnv implements Serializable {
     def labelForOS(String os) {
         switch (os) {
             case 'linux':
-			     return 'H22'
-//                return 'ubuntu'
+//			     return 'H22'
+                return 'ubuntu'
             case 'windows':
 //                return 'windows-2016-3'
                 return 'Windows'
