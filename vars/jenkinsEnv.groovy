@@ -41,7 +41,8 @@ class jenkinsEnv implements Serializable {
             case 'linux':
                 switch (version) {
                     case '7':
-                        return 'JDK 1.7 (latest)'
+//                      return 'JDK 1.7 (latest)'
+                        return 'JDK 1.8 (latest)'
                     case '8':
                         return 'JDK 1.8 (latest)'
                     case '9':
@@ -64,7 +65,8 @@ class jenkinsEnv implements Serializable {
             case 'windows':
                 switch(version) {
                     case '7':
-                        return 'JDK 1.7 (latest)'
+//                      return 'JDK 1.7 (latest)'
+                        return 'JDK 1.8 (latest)'
                     case '8':
                         return 'JDK 1.8 (latest)'
                     case '9':
@@ -79,7 +81,7 @@ class jenkinsEnv implements Serializable {
                         return 'JDK 13 (latest)'
                     case '14':
                         return 'JDK 14 (latest)'
-					case '15':
+                    case '15':
                         return 'JDK 15 (latest)'
                     default:
                         return null
