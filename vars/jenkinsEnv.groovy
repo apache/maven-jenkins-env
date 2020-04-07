@@ -31,7 +31,7 @@ class jenkinsEnv implements Serializable {
                 return 'ubuntu'
             case 'windows':
 //                return 'windows-2016-3'
-                return 'Windows'
+                return 'Windows && !jenkins-win-he-de-1'
             default:
                 return null
         }
