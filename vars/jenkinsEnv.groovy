@@ -135,17 +135,11 @@ class jenkinsEnv implements Serializable {
                 return null
         }
     }
-    /**
-     * https://maven.apache.org/docs/history.html
-     * 3.1.1 and bellow - Java 5
-     * 3.2.x - Java 6
-     * 3.3.1 - Java 7
-     * 3.7.x (planned) - Java 8
-     * for Jenkins - testing only with Java 7+
-     */
     def jdkForMaven(String version) {
         switch(version) {
-            case ~/^3\.[012356]\..+/:
+            case ~/^3\.0\..+/:
+                return '6'
+            case ~/^3\.[2356]\..+/:
             case '3.x.x':
                 return '7'
             case '3.7.x':
