@@ -42,48 +42,48 @@ class jenkinsEnv implements Serializable {
             case 'linux':
                 switch (version) {
                     case '7':
-                        return 'JDK 1.7 (latest)'
+                        return 'jdk_1.7_latest'
                     case '8':
-                        return 'JDK 1.8 (latest)'
+                        return 'jdk_1.8_latest'
                     case '9':
-                        return 'JDK 1.9 (latest)'
+                        return 'jdk_1.9_latest'
                     case '10':
-                        return 'JDK 10 (latest)'
+                        return 'jdk_10_latest'
                     case '11':
-                        return 'JDK 11 (latest)'
+                        return 'jdk_11_latest'
                     case '12':
-                        return 'JDK 12 (latest)'
+                        return 'jdk_12_latest'
                     case '13':
-                        return 'JDK 13 (latest)'
+                        return 'jdk_13_latest'
                     case '14':
-                        return 'JDK 14 (latest)'
+                        return 'jdk_14_latest'
                     case '15':
-                        return 'JDK 15 (latest)'
+                        return 'jdk_15_latest'
                     case '16':
-                        return 'JDK 16 (latest)'
+                        return 'jdk_16_latest'
                     default:
                         return null
                 }
             case 'windows':
                 switch(version) {
                     case '7':
-                        return 'JDK 1.7 (latest)'
+                        return 'jdk_1.7_latest'
                     case '8':
-                        return 'JDK 1.8 (latest)'
+                        return 'jdk_1.8_latest'
                     case '9':
-                        return 'JDK 1.9 (latest)'
+                        return 'jdk_1.9_latest'
                     case '10':
-                        return 'JDK 10 (latest)'
+                        return 'jdk_10_latest'
                     case '11':
-                        return 'JDK 11 (latest)'
+                        return 'jdk_11_latest'
                     case '12':
-                        return 'JDK 12 (latest)'
+                        return 'jdk_12_latest'
                     case '13':
-                        return 'JDK 13 (latest)'
+                        return 'jdk_13_latest'
                     case '14':
-                        return 'JDK 14 (latest)'
+                        return 'jdk_14_latest'
                     case '15':
-                        return 'JDK 15 (latest)'
+                        return 'jdk_15_latest'
                     default:
                         return null
                 }
@@ -96,40 +96,40 @@ class jenkinsEnv implements Serializable {
             case 'linux':
                 switch(version) {
                     case ~/^3\.0\.[x5]$/:
-                        return 'Maven 3.0.5'
+                        return 'Maven_3.0.5'
                     case ~/^3\.1\.[x1]$/:
-                        return 'Maven 3.1.1'
+                        return 'Maven_3.1.1'
                     case ~/^3\.2\.[x5]$/:
-                        return 'Maven 3.2.5'
+                        return 'Maven_3.2.5'
                     case ~/^3\.3\.[x9]$/:
-                        return 'Maven 3.3.9'
+                        return 'Maven_3.3.9'
                     case ~/^3\.5\.[x4]$/:
-                        return 'Maven 3.5.4'
+                        return 'Maven_3.5.4'
                     case ~/^3\.6\.[x3]$/:
-                        return 'Maven 3.6.3'
+                        return 'Maven_3.6.3'
                     case '3.x.x':
-                        return 'Maven 3.6.3'
+                        return 'Maven_3.6.3'
                     default:
-                        return 'Maven 3.6.3'
+                        return 'Maven_3.6.3'
                 }
             case 'windows':
                 switch(version) {
                     case ~/^3\.0\.[x5]$/:
-                        return 'Maven 3.0.5 (Windows)'
+                        return 'Maven_3.0.5_Windows'
                     case ~/^3\.1\.[x1]$/:
-                        return 'Maven 3.1.1 (Windows)'
+                        return 'Maven_3.1.1_Windows'
                     case ~/^3\.2\.[x5]$/:
-                        return 'Maven 3.2.5 (Windows)'
+                        return 'Maven_3.2.5_Windows'
                     case ~/^3\.3\.[x9]$/:
-                        return 'Maven 3.3.9 (Windows)'
+                        return 'Maven_3.3.9_Windows'
                     case ~/^3\.5\.[x4]$/:
-                        return 'Maven 3.5.4 (Windows)'
-                    case ~/^3\.6\.[x2]$/:
-                        return 'Maven 3.6.2 (Windows)'
+                        return 'Maven_3.5.4_Windows'
+                    case ~/^3\.6\.[x3]$/:
+                        return 'Maven_3.6.3_Windows'
                     case '3.x.x':
-                        return 'Maven 3.6.2 (Windows)'
+                        return 'Maven_3.6.3_Windows'
                     default:
-                        return 'Maven 3.6.2 (Windows)'
+                        return 'Maven_3.6.3_Windows'
                 }
             default:
                 return null
