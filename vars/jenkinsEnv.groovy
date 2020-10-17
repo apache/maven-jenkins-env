@@ -96,40 +96,40 @@ class jenkinsEnv implements Serializable {
             case 'linux':
                 switch(version) {
                     case ~/^3\.0\.[x5]$/:
-                        return 'Maven_3.0.5'
+                        return 'maven_3.0.5'
                     case ~/^3\.1\.[x1]$/:
-                        return 'Maven_3.1.1'
+                        return 'maven_3.1.1'
                     case ~/^3\.2\.[x5]$/:
-                        return 'Maven_3.2.5'
+                        return 'maven_3.2.5'
                     case ~/^3\.3\.[x9]$/:
-                        return 'Maven_3.3.9'
+                        return 'maven_3.3.9'
                     case ~/^3\.5\.[x4]$/:
-                        return 'Maven_3.5.4'
+                        return 'maven_3.5.4'
                     case ~/^3\.6\.[x3]$/:
-                        return 'Maven_3.6.3'
+                        return 'maven_3.6.3'
                     case '3.x.x':
-                        return 'Maven_3.6.3'
+                        return 'maven_3.6.3'
                     default:
-                        return 'Maven_3.6.3'
+                        return 'maven_3.6.3'
                 }
             case 'windows':
                 switch(version) {
                     case ~/^3\.0\.[x5]$/:
-                        return 'Maven_3.0.5_Windows'
+                        return 'maven_3.0.5_windows'
                     case ~/^3\.1\.[x1]$/:
-                        return 'Maven_3.1.1_Windows'
+                        return 'maven_3.1.1_windows'
                     case ~/^3\.2\.[x5]$/:
-                        return 'Maven_3.2.5_Windows'
+                        return 'maven_3.2.5_windows'
                     case ~/^3\.3\.[x9]$/:
-                        return 'Maven_3.3.9_Windows'
+                        return 'maven_3.3.9_windows'
                     case ~/^3\.5\.[x4]$/:
-                        return 'Maven_3.5.4_Windows'
+                        return 'maven_3.5.4_windows'
                     case ~/^3\.6\.[x3]$/:
-                        return 'Maven_3.6.3_Windows'
+                        return 'maven_3.6.3_windows'
                     case '3.x.x':
-                        return 'Maven_3.6.3_Windows'
+                        return 'maven_3.6.3_windows'
                     default:
-                        return 'Maven_3.6.3_Windows'
+                        return 'maven_3.6.3_windows'
                 }
             default:
                 return null
