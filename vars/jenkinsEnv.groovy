@@ -142,7 +142,7 @@ class jenkinsEnv implements Serializable {
             case ~/^3\.[2356]\..+/:
             case '3.x.x':
                 return '7'
-            case '3.7.x':
+            case '4.x.x':
                 return '8'
             default:
                 return null
