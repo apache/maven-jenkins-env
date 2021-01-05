@@ -61,6 +61,8 @@ class jenkinsEnv implements Serializable {
                         return 'jdk_15_latest'
                     case '16':
                         return 'jdk_16_latest'
+                    case '17':
+                        return 'jdk_17_latest'
                     default:
                         return null
                 }
@@ -84,6 +86,8 @@ class jenkinsEnv implements Serializable {
                         return 'jdk_14_latest'
                     case '15':
                         return 'jdk_15_latest'
+                    case '17':
+                        return 'jdk_17_latest'
                     default:
                         return null
                 }
