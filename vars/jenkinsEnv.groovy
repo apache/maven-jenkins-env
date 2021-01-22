@@ -86,6 +86,8 @@ class jenkinsEnv implements Serializable {
                         return 'jdk_14_latest'
                     case '15':
                         return 'jdk_15_latest'
+                    case '16':
+                        return 'jdk_16_latest'
                     case '17':
                         return 'jdk_17_latest'
                     default:
@@ -129,11 +131,11 @@ class jenkinsEnv implements Serializable {
                     case ~/^3\.5\.[x4]$/:
                         return 'maven_3.5.4_windows'
                     case ~/^3\.6\.[x2]$/:
-                        return 'maven_3.6.2_windows'
+                        return 'maven_3.6.3_windows'
                     case '3.x.x':
-                        return 'maven_3.6.2_windows'
+                        return 'maven_3.6.3_windows'
                     default:
-                        return 'maven_3.6.2_windows'
+                        return 'maven_3.6.3_windows'
                 }
             default:
                 return null
