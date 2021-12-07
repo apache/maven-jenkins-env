@@ -128,7 +128,7 @@ class jenkinsEnv implements Serializable {
             case '6':
                 return '3.0.x'
             default:
-                return '3.8.x'
+                return '3.6.x'
         }
     }
 }
