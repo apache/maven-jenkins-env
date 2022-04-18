@@ -43,22 +43,22 @@ class jenkinsEnv implements Serializable {
 				return 'jdk_1.7_latest'
 			case '8':
 				return 'jdk_1.8_latest'
-			case '9':
-				return 'jdk_1.9_latest'
-			case '10':
-				return 'jdk_10_latest'
+//			case '9':
+//				return 'jdk_1.9_latest'
+//			case '10':
+//				return 'jdk_10_latest'
 			case '11':
 				return 'jdk_11_latest'
-			case '12':
-				return 'jdk_12_latest'
-			case '13':
-				return 'jdk_13_latest'
-			case '14':
-				return 'jdk_14_latest'
-			case '15':
-				return 'jdk_15_latest'
-			case '16':
-				return 'jdk_16_latest'
+//			case '12':
+//				return 'jdk_12_latest'
+//			case '13':
+//				return 'jdk_13_latest'
+//			case '14':
+//				return 'jdk_14_latest'
+//			case '15':
+//				return 'jdk_15_latest'
+//			case '16':
+//				return 'jdk_16_latest'
 			case '17':
 				return 'jdk_17_latest'
 			case '18':
@@ -71,8 +71,8 @@ class jenkinsEnv implements Serializable {
         switch (os) {
             case 'linux':
                 switch(version) {
-                    case ~/^3\.0\.[x5]$/:
-                        return 'maven_3.0.5'
+//                    case ~/^3\.0\.[x5]$/:
+//                        return 'maven_3.0.5'
                     case ~/^3\.1\.[x1]$/:
                         return 'maven_3.1.1'
                     case ~/^3\.2\.[x5]$/:
@@ -92,8 +92,8 @@ class jenkinsEnv implements Serializable {
                 }
             case 'windows':
                 switch(version) {
-                    case ~/^3\.0\.[x5]$/:
-                        return 'maven_3.0.5_windows'
+//                    case ~/^3\.0\.[x5]$/:
+//                        return 'maven_3.0.5_windows'
                     case ~/^3\.1\.[x1]$/:
                         return 'maven_3.1.1_windows'
                     case ~/^3\.2\.[x5]$/:
@@ -125,8 +125,8 @@ class jenkinsEnv implements Serializable {
     }
     def mavenForJdk(String version) {
         switch(version) {
-            case '6':
-                return '3.0.x'
+//            case '6':
+//                return '3.0.x'
             default:
                 return '3.6.x'
         }
