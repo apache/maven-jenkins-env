@@ -86,11 +86,11 @@ class jenkinsEnv implements Serializable {
                     case ~/^3\.6\.[x3]$/:
                         return 'maven_3.6.3'
                     case ~/^3\.8\.x$/:
-                        return 'maven_3.8.5'
+                        return 'maven_3.8.6'
                     case '3.x.x':
-                        return 'maven_3.8.5'
+                        return 'maven_3.8.6'
                     default:
-                        return 'maven_3.8.5'
+                        return 'maven_3.8.6'
                 }
             case 'windows':
                 switch(version) {
