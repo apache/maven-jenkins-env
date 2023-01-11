@@ -37,6 +37,7 @@ class jenkinsEnv implements Serializable {
                 return null
         }
     }
+    // https://cwiki.apache.org/confluence/display/INFRA/JDK+Installation+Matrix
     def jdkFromVersion(String os, String version) {
 		switch (version) {
 			case '7':
@@ -69,6 +70,7 @@ class jenkinsEnv implements Serializable {
 				return null
 		}
     }
+    // https://cwiki.apache.org/confluence/display/INFRA/Maven+Installation+Matrix
     def mvnFromVersion(String os, String version) {
         switch (os) {
             case 'linux':
@@ -86,11 +88,11 @@ class jenkinsEnv implements Serializable {
                     case ~/^3\.6\.[x3]$/:
                         return 'maven_3.6.3'
                     case ~/^3\.8\.x$/:
-                        return 'maven_3.8.6'
+                        return 'maven_3_latest'
                     case '3.x.x':
-                        return 'maven_3.8.6'
+                        return 'maven_3_latest'
                     default:
-                        return 'maven_3.8.6'
+                        return 'maven_3_latest'
                 }
             case 'windows':
                 switch(version) {
@@ -107,11 +109,11 @@ class jenkinsEnv implements Serializable {
                     case ~/^3\.6\.[x4]$/:
                         return 'maven_3.6.3_windows'
                     case ~/^3\.8\.x$/:
-                        return 'maven_latest'
+                        return 'maven_3_latest'
                     case '3.x.x':
-                        return 'maven_latest'
+                        return 'maven_3_latest'
                     default:
-                        return 'maven_latest'
+                        return 'maven_3_latest'
                 }
             default:
                 return null
