@@ -77,6 +77,8 @@ class jenkinsEnv implements Serializable {
                         return 'maven_3.8.7'
                     case '3.x.x':
                         return 'maven_3_latest'
+                    case '4.0.x':
+                        return 'maven_4_latest'
                     default:
                         return 'maven_3_latest'
                 }
@@ -98,6 +100,8 @@ class jenkinsEnv implements Serializable {
                         return 'maven_3.8.7_windows'
                     case '3.x.x':
                         return 'maven_3_latest'
+                    case '4.0.x':
+                        return 'maven_4_latest'
                     default:
                         return 'maven_3_latest'
                 }
