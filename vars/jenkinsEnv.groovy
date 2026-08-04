@@ -56,6 +56,32 @@ class jenkinsEnv implements Serializable {
 				return null
 		}
     }
+    /**
+     * Concrete Maven version for a version pattern, for tools that need a real
+     * version rather than a Jenkins tool installation name — the Maven wrapper
+     * in particular, whose -Dmaven= builds a download URL and so cannot be
+     * given "4.0.x".
+     *
+     * Returns null for an unknown pattern, so a caller can fail rather than
+     * quietly build an URL that 404s.
+     */
+    def mvnVersionFromPattern(String version) {
+        switch (version) {
+            case '4.0.x':
+                return '4.0.0-rc-6'
+            case '3.x.x':
+            case '3.9.x':
+                return '3.9.12'
+            case ~/^3\.8\.x$/:
+                return '3.8.8'
+            case ~/^3\.6\.[x3]$/:
+                return '3.6.3'
+            default:
+                // Already a concrete version? Pass it through; otherwise unknown.
+                return version ==~ /^\d+\.\d+\.\d+(-.+)?$/ ? version : null
+        }
+    }
+
     // https://cwiki.apache.org/confluence/display/INFRA/Maven+Installation+Matrix
     def mvnFromVersion(String os, String version) {
         switch (os) {
